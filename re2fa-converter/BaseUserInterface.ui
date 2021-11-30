@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>720</width>
-    <height>480</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -119,7 +119,7 @@ border-radius: 5px;</string>
       <x>10</x>
       <y>60</y>
       <width>700</width>
-      <height>410</height>
+      <height>400</height>
      </rect>
     </property>
     <property name="font">
