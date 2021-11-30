@@ -12,7 +12,7 @@ class MainApp(QMainWindow, PrimaryUserInterface):
         QMainWindow.__init__(self)
         self.title = "RE2FA Converter by t0xic0der"
         self.setupUi(self)
-		self.setWindowTitle(self.title)
+        self.setWindowTitle(self.title)
         self.HandleElements()
 
     def HandleElements(self):
@@ -41,6 +41,7 @@ def RegexComputation(InputRegularExpression):
                  "<b>Non-deterministic Finite Automata</b>" + "<br/>" + nfaObject.displayNFA() + "<br/>" + \
                  "<b>Deterministic Finite Automata</b>" + "<br/>" + dfaObject.displayDFA() + "<br/>" + \
                  "<b>Minimised Deterministic Finite Automata</b>" + "<br/>" + dfaObject.displayMinimisedDFA() + "<br/>" + \
+                 "<b>Graph Minimised Deterministic Finite Automata</b>" + "<br/>" + dfaObject.drawMinimisedDFA() + "<br/>" + \
                  "<b>Computation time: </b>" + str(TotalTime) + " seconds"
     return actualData
 
@@ -48,7 +49,7 @@ def main():
     app=QApplication(sys.argv)
     QFontDatabase.addApplicationFont("Roboto-Regular.ttf")
     QFontDatabase.addApplicationFont("RobotoMono-Regular.ttf")
-	QFontDatabase.addApplicationFont("RobotoMono-Bold.ttf")
+    QFontDatabase.addApplicationFont("RobotoMono-Bold.ttf")
     QFontDatabase.addApplicationFont("RobotoMono-Italic.ttf")
     window=MainApp()
     window.show()

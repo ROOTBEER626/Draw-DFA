@@ -79,6 +79,12 @@ class Automata:
         otptdata = otptdata + "</pre>"
         return otptdata
 
+    def draw(self):
+        #make nodes of each state self.states
+        #make edges between the transitions self.transistion ^
+        #identity start and ending states self.startstate and self.finalstates
+        return
+
     def getPrintText(self):
         text =  "Language: {" + ", ".join(self.language) + "}\n"
         text += "States: {" + ", ".join(map(str,self.states)) + "}\n"
@@ -208,6 +214,9 @@ class DFAfromNFA:
 
     def displayMinimisedDFA(self):
         return self.minDFA.display()
+
+    def drawMinimisedDFA(self):
+        return self.minDFA.draw()
 
     def buildDFA(self, nfa):
         allstates = dict()
