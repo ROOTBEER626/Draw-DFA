@@ -1,4 +1,6 @@
 from os import popen
+import networkx as nx
+from matplotlib import pyplot as plt
 
 class Automata:
 
@@ -81,9 +83,26 @@ class Automata:
 
     def draw(self):
         #make nodes of each state self.states
-        #make edges between the transitions self.transistion ^
+        G = nx.Graph()
+        print(self.states)
+        for x in self.states:
+            G.add_node(x)
+            print("Adding Node: " + str(x))
+        #Get edges
+        for fromstate, tostates in self.transitions.items():
+            for state in tostates:
+                for char in tostates[state]:
+                    print(fromstate)
+                    print(state)
+                    print(char)
+                    print("")
+                    G.add_edge(fromstate,state)
+        #e = self.transitions
+        #G.add_edge(*e) #unpack the tuple
         #identity start and ending states self.startstate and self.finalstates
-        return
+        print(G.nodes)
+        print(G.edges)
+        return G
 
     def getPrintText(self):
         text =  "Language: {" + ", ".join(self.language) + "}\n"
