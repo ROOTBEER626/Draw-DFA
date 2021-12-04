@@ -92,16 +92,10 @@ class Automata:
         for fromstate, tostates in self.transitions.items():
             for state in tostates:
                 for char in tostates[state]:
-                    print(fromstate)
-                    print(state)
-                    print(char)
-                    print("")
-                    G.add_edge(fromstate,state)
+                    G.add_edge(fromstate,state, label=char)
         #e = self.transitions
         #G.add_edge(*e) #unpack the tuple
         #identity start and ending states self.startstate and self.finalstates
-        print(G.nodes)
-        print(G.edges)
         return G
 
     def getPrintText(self):
