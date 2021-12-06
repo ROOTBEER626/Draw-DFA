@@ -29,10 +29,9 @@ class MainApp(QMainWindow, PrimaryUserInterface):
             ReturnData = ReturnData + "<i>Horizontal and vertical scrolling is supported</i><br/><br/>" + RegexComputation(InputRegularExpression)
         except BaseException as ExceptionEvent:
             ReturnData = ReturnData + "<b>Failure: </b>" + str(ExceptionEvent)
-        Data = ReturnData[0] + "<br/><br/>" + "<b>Stopped ToxicEngine for RE2FA conversion</b>" + "<br/>" + \
+        Data = ReturnData + "<br/><br/>" + "<b>Stopped ToxicEngine for RE2FA conversion</b>" + "<br/>" + \
                      "<i>Follow me on https://www.github.com/t0xic0der for more such projects!</i>"
         self.textedit.setText(Data)
-        self.graphWidget = pg.image(nx.to_numpy_matrix(ReturnData[1]))
 
 
 def RegexComputation(InputRegularExpression):
@@ -48,8 +47,7 @@ def RegexComputation(InputRegularExpression):
                  "<b>Minimised Deterministic Finite Automata</b>" + "<br/>" + dfaObject.displayMinimisedDFA() + "<br/>"  \
                  "<b>Computation time: </b>" + str(TotalTime) + " seconds" + "<br/>" \
                  "<b>Graph Minimised Deterministic Finite Automata</b>" + "<br/>"
-    G = dfaObject.drawMinimisedDFA()
-    return (actualData, G)
+    return (actualData)
 
 #Have to put the below in the UI
 

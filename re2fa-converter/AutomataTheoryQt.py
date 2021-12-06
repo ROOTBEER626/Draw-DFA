@@ -84,17 +84,13 @@ class Automata:
     def draw(self):
         #make nodes of each state self.states
         G = nx.Graph()
-        print(self.states)
         for x in self.states:
             G.add_node(x)
-            print("Adding Node: " + str(x))
         #Get edges
         for fromstate, tostates in self.transitions.items():
             for state in tostates:
                 for char in tostates[state]:
                     G.add_edge(fromstate,state, label=char)
-        #e = self.transitions
-        #G.add_edge(*e) #unpack the tuple
         #identity start and ending states self.startstate and self.finalstates
         return G
 
@@ -225,6 +221,9 @@ class DFAfromNFA:
     def displayDFA(self):
         return self.dfa.display()
 
+    def drawDFA(self):
+        return self.dfa.draw()
+
     def displayMinimisedDFA(self):
         return self.minDFA.display()
 
@@ -328,13 +327,15 @@ class DFAfromNFA:
         while newFound and len(unchecked) > 0:
             newFound = False
             toremove = set()
-            for p, pair in unchecked.items():
-                for tr in pair[2:]:
-                    if [tr[0], tr[1]] in distinguished or [tr[1], tr[0]] in distinguished:
-                        unchecked.pop(p)
-                        distinguished.append([pair[0], pair[1]])
-                        newFound = True
-                        break
+            #######added the if check to see if it would magically fix my problems
+            if unchecked.items():
+                for p, pair in unchecked.items():
+                    for tr in pair[2:]:
+                        if [tr[0], tr[1]] in distinguished or [tr[1], tr[0]] in distinguished:
+                            unchecked.pop(p)
+                            distinguished.append([pair[0], pair[1]])
+                            newFound = True
+                            break
         for pair in unchecked.values():
             p1 = pos[pair[0]]
             p2 = pos[pair[1]]
@@ -368,6 +369,9 @@ class NFAfromRegex:
 
     def displayNFA(self):
         return self.nfa.display()
+
+    def drawNFA(self):
+        return self.nfa.draw()
 
     def buildNFA(self):
         language = set()

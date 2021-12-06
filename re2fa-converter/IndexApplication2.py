@@ -17,8 +17,7 @@ class MainApp(QWidget):
         layout = QVBoxLayout(self)
         self.setWindowTitle("RE2FA")
         self.centwijet = QWidget()
-        self.lineedit = QLineEdit(
-                )
+        self.lineedit = QLineEdit()
         self.ttletext = QLabel()
         self.pushbutn = QPushButton()
         self.titlebar = QWidget()
@@ -48,13 +47,23 @@ class MainApp(QWidget):
         nfaObject = NFAfromRegex(InputRegularExpression)
         nfa = nfaObject.getNFA()
         dfaObject = DFAfromNFA(nfa)
-        G = dfaObject.drawMinimisedDFA()
+        G = dfaObject.drawDFA()
+        #G = dfaObject.drawMinimisedDFA()
+        #G = nfaObject.drawNFA()
         pos = nx.shell_layout(G)
         labels = nx.get_edge_attributes(G, "label")
+        color_map = []
+        #for node in G:
+        #    if node is nfa.startstate:
+        #        color_map.append('blue')
+        #    if node in nfa.finalstates:
+        #        color_map.append('red')
+        #    else:
+        #        color_map.append('green')
         nx.draw(
                 G,
                 pos,
-                node_color="black",
+                node_color='black',
                 with_labels=True,
                 edge_color="black",
                 font_color="white",
