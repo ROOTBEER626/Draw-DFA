@@ -85,7 +85,8 @@ class Automata:
         #make nodes of each state self.states
         G = nx.Graph()
         for x in self.states:
-            G.add_node(x)
+            if x not in G.nodes:
+                G.add_node(x)
         #Get edges
         for fromstate, tostates in self.transitions.items():
             for state in tostates:
