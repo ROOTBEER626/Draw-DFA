@@ -86,7 +86,17 @@ class Automata:
         G = nx.Graph()
         for x in self.states:
             if x not in G.nodes:
+                #if x == self.startstate:
+                #    G.add_nodes_from([(x, {'color':'green'})])
+                #    print("adding green")
+                #elif x in self.finalstates:
+                #    G.add_nodes_from([(x, {'color':'red'})])
+                #    print("adding red")
+                #else:
+                #    G.add_nodes_from([(x, {'color':'blue'})])
+                #    print("adding blue")
                 G.add_node(x)
+
         #Get edges
         for fromstate, tostates in self.transitions.items():
             for state in tostates:

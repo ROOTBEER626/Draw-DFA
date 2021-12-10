@@ -1,9 +1,0 @@
-So we located the file that needs changing to be AutomataTheory.py
-
-Here we can decide to either create a draw function for the DFAfromNFA class
-Or we can implement a draw function for the Automata class allowing us to 
-draw for both DFA and NFA
-
-First step we will need to figure out exactly how the states are given and represented in the program
-Then we will have to learn how to use NetworkX to draw this graph
-Then we just have to plug it into out GUI and boom we are done

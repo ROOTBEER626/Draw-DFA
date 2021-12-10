@@ -51,6 +51,17 @@ class MainApp(QWidget):
         self.textedit.setReadOnly(True)
         self.pushbutn.clicked.connect(self.compdata)
 
+    def getColors(self, G):
+        color_map = []
+        for node in G:
+            if node['color'] == 'green':
+                color_map.append('green')
+            elif node['color'] == 'red':
+                color_map.append('red')
+            else: 
+                color_map.append('black')
+        return color_map
+
     def drawnfa(self):
         InputRegularExpression = self.lineedit.text()
         self.ax.clear()
@@ -58,11 +69,13 @@ class MainApp(QWidget):
         nfa = nfaObject.getNFA()
         G = nfaObject.drawNFA()
         pos = nx.shell_layout(G)
+        #color_map = self.getColors(G)
         labels = nx.get_edge_attributes(G, "label")
         nx.draw(
                 G,
                 pos,
-                node_color='black',
+                #node_color=color_map,
+                node_color = 'black',
                 with_labels=True,
                 edge_color="black",
                 font_color="white",
@@ -81,12 +94,15 @@ class MainApp(QWidget):
         nfaObject = NFAfromRegex(InputRegularExpression)
         nfa = nfaObject.getNFA()
         dfaObject = DFAfromNFA(nfa)
+        #ss = dfaObject.startstate
         G = dfaObject.drawDFA()
+        #color_map = self.getColors(G)
         pos = nx.shell_layout(G)
         labels = nx.get_edge_attributes(G, "label")
         nx.draw(
                 G,
                 pos,
+                #node_color=color_map,
                 node_color='black',
                 with_labels=True,
                 edge_color="black",
@@ -107,11 +123,13 @@ class MainApp(QWidget):
         nfa = nfaObject.getNFA()
         dfaObject = DFAfromNFA(nfa)
         G = dfaObject.drawMinimisedDFA()
+        #color_map = self.getColors(G)
         pos = nx.shell_layout(G)
         labels = nx.get_edge_attributes(G, "label")
         nx.draw(
                 G,
                 pos,
+                #node_color = color_map,
                 node_color='black',
                 with_labels=True,
                 edge_color="black",
@@ -143,7 +161,7 @@ def RegexComputation(InputRegularExpression):
     startTime = time.time()
     nfaObject = NFAfromRegex(InputRegularExpression)
     nfa = nfaObject.getNFA()
-    dfaObject = DFAfromNFA(nfa)    
+    dfaObject = DFAfromNFA(nfa)   
     stopTime = time.time()
     TotalTime = stopTime - startTime
     actualData = "<b>Regular Expression: </b>" + str(InputRegularExpression) + "<br/>" + "<br/>" + \
