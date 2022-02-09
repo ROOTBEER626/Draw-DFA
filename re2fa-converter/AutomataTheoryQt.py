@@ -88,7 +88,7 @@ class Automata:
             if x not in G.nodes:
                 #if x == self.startstate:
                 #    G.add_nodes_from([(x, {'color':'green'})])
-                #    print("adding green")
+                #   print("adding green")
                 #elif x in self.finalstates:
                 #    G.add_nodes_from([(x, {'color':'red'})])
                 #    print("adding red")
@@ -104,6 +104,21 @@ class Automata:
                     G.add_edge(fromstate,state, label=char)
         #identity start and ending states self.startstate and self.finalstates
         return G
+    
+    def getColors(self):
+        color_map = []
+        for x in self.states:
+            if x == self.startstate:
+                color_map.append('green')
+                print("Green")
+            elif x in self.finalstates:
+                color_map.append('red')
+                print("red")
+            else: 
+                color_map.append('black')
+                print("black")
+        return color_map
+
 
     def getPrintText(self):
         text =  "Language: {" + ", ".join(self.language) + "}\n"
@@ -235,11 +250,17 @@ class DFAfromNFA:
     def drawDFA(self):
         return self.dfa.draw()
 
+    def getColors(self):
+        return self.dfa.getColors()
+
     def displayMinimisedDFA(self):
         return self.minDFA.display()
 
     def drawMinimisedDFA(self):
         return self.minDFA.draw()
+
+    def getMinimisedColors(self):
+        return self.minDFA.getColors()
 
     def buildDFA(self, nfa):
         allstates = dict()
@@ -383,6 +404,9 @@ class NFAfromRegex:
 
     def drawNFA(self):
         return self.nfa.draw()
+
+    def getColors(self):
+        return self.nfa.getColors()
 
     def buildNFA(self):
         language = set()

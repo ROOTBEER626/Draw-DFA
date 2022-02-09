@@ -51,16 +51,17 @@ class MainApp(QWidget):
         self.textedit.setReadOnly(True)
         self.pushbutn.clicked.connect(self.compdata)
 
-    def getColors(self, G):
-        color_map = []
-        for node in G:
-            if node['color'] == 'green':
-                color_map.append('green')
-            elif node['color'] == 'red':
-                color_map.append('red')
-            else: 
-                color_map.append('black')
-        return color_map
+    #def getColors(self, G):
+    #    color_map = []
+    #    for node in G:
+    #        if node['color'] == 'green':
+    #            color_map.append('green')
+    #        elif node['color'] == 'red':
+    #            color_map.append('red')
+    #        else: 
+    #            color_map.append('black')
+    #    return color_map
+
 
     def drawnfa(self):
         InputRegularExpression = self.lineedit.text()
@@ -69,13 +70,13 @@ class MainApp(QWidget):
         nfa = nfaObject.getNFA()
         G = nfaObject.drawNFA()
         pos = nx.shell_layout(G)
-        #color_map = self.getColors(G)
+        color_map = nfa.getColors()
         labels = nx.get_edge_attributes(G, "label")
         nx.draw(
                 G,
                 pos,
-                #node_color=color_map,
-                node_color = 'black',
+                node_color=color_map,
+                #node_color = 'black',
                 with_labels=True,
                 edge_color="black",
                 font_color="white",
@@ -96,14 +97,14 @@ class MainApp(QWidget):
         dfaObject = DFAfromNFA(nfa)
         #ss = dfaObject.startstate
         G = dfaObject.drawDFA()
-        #color_map = self.getColors(G)
+        color_map = dfaObject.getColors()
         pos = nx.shell_layout(G)
         labels = nx.get_edge_attributes(G, "label")
         nx.draw(
                 G,
                 pos,
-                #node_color=color_map,
-                node_color='black',
+                node_color=color_map,
+                #node_color='black',
                 with_labels=True,
                 edge_color="black",
                 font_color="white",
@@ -123,14 +124,14 @@ class MainApp(QWidget):
         nfa = nfaObject.getNFA()
         dfaObject = DFAfromNFA(nfa)
         G = dfaObject.drawMinimisedDFA()
-        #color_map = self.getColors(G)
+        color_map = dfaObject.getMinimisedColors()
         pos = nx.shell_layout(G)
         labels = nx.get_edge_attributes(G, "label")
         nx.draw(
                 G,
                 pos,
-                #node_color = color_map,
-                node_color='black',
+                node_color = color_map,
+                #node_color='black',
                 with_labels=True,
                 edge_color="black",
                 font_color="white",
