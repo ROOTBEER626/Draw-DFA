@@ -1,5 +1,5 @@
 # Draw-DFA
-This project builds on t0xic0der / re2fa-converter adding the functionality to graphically represent the resultant DFA . 
+This project builds on t0xic0der / re2fa-converter adding the functionality to graphically represent the resultant DFA. <br /> 
 The graphing will be done using NetworkX.
 To run the project with the graph.
   Clone the project.
